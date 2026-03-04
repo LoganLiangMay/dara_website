@@ -89,11 +89,11 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
         animate="visible"
         variants={containerVariants}
       >
-        {/* Left Side: Content - Full width on mobile */}
-        <div className="flex w-full flex-col justify-between min-h-screen md:min-h-full p-6 sm:p-8 md:w-1/2 md:p-12 lg:w-3/5 lg:p-16">
-            {/* Top Section: Logo & Main Content */}
-            <div>
-                <motion.header className="mb-8 sm:mb-12" variants={itemVariants}>
+        {/* Left Side: Content - Full width on mobile with better spacing */}
+        <div className="flex w-full flex-col justify-center md:justify-between min-h-[100vh] md:min-h-full py-8 px-6 sm:p-8 md:w-1/2 md:p-12 lg:w-3/5 lg:p-16">
+            {/* Main Content - Centered on mobile */}
+            <div className="flex flex-col justify-center flex-grow md:flex-grow-0 md:justify-start">
+                <motion.header className="mb-6 md:mb-12" variants={itemVariants}>
                     {logo && (
                         <div className="flex items-center">
                             {/* Profile image - Larger on mobile since it's the only image */}
@@ -112,8 +112,8 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
                     <motion.h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-foreground" variants={itemVariants}>
                         {title}
                     </motion.h1>
-                    <motion.div className="my-4 sm:my-6 h-1 w-16 sm:w-20 bg-primary" variants={itemVariants}></motion.div>
-                    <motion.p className="mb-6 sm:mb-8 max-w-md text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed" variants={itemVariants}>
+                    <motion.div className="my-3 sm:my-4 md:my-6 h-1 w-16 sm:w-20 bg-primary" variants={itemVariants}></motion.div>
+                    <motion.p className="mb-5 sm:mb-6 md:mb-8 max-w-md text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed" variants={itemVariants}>
                         {subtitle}
                     </motion.p>
                     <motion.a
@@ -128,9 +128,9 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
                 </motion.main>
             </div>
 
-            {/* Bottom Section: Footer Info */}
-            <motion.footer className="mt-8 sm:mt-12 w-full" variants={itemVariants}>
-                <div className="grid grid-cols-1 gap-4 sm:gap-6 text-xs sm:text-sm text-muted-foreground sm:grid-cols-3">
+            {/* Bottom Section: Footer Info - Compact on mobile */}
+            <motion.footer className="mt-auto pt-8 pb-4 md:mt-12 w-full" variants={itemVariants}>
+                <div className="grid grid-cols-1 gap-3 sm:gap-6 text-xs sm:text-sm text-muted-foreground sm:grid-cols-3">
                     <div className="flex items-center">
                         <InfoIcon type="website" />
                         <span className="truncate">{contactInfo.website}</span>
