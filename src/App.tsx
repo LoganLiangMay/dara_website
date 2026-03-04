@@ -1,4 +1,4 @@
-import { HeroSection } from './components/ui/hero-section';
+import { HeroSection } from './components/ui/hero-section-2';
 import { ExperienceSection } from './components/ui/experience-section';
 import { SkillsSection, type SkillCategory } from './components/ui/skills-section';
 import { ProjectsSection, type Project } from './components/ui/projects-section';
