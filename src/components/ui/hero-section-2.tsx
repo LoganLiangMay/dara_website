@@ -82,22 +82,22 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
       <motion.section
         ref={ref}
         className={cn(
-          "relative flex w-full flex-col overflow-hidden bg-background text-foreground md:flex-row min-h-screen",
+          "relative flex w-full flex-col overflow-hidden bg-gradient-to-br from-background via-background to-primary/5 md:bg-background text-foreground md:flex-row md:min-h-screen",
           className
         )}
         initial="hidden"
         animate="visible"
         variants={containerVariants}
       >
-        {/* Left Side: Content */}
-        <div className="flex w-full flex-col justify-between p-6 sm:p-8 md:w-1/2 md:p-12 lg:w-3/5 lg:p-16">
+        {/* Left Side: Content - Full width on mobile */}
+        <div className="flex w-full flex-col justify-between min-h-screen md:min-h-full p-6 sm:p-8 md:w-1/2 md:p-12 lg:w-3/5 lg:p-16">
             {/* Top Section: Logo & Main Content */}
             <div>
                 <motion.header className="mb-8 sm:mb-12" variants={itemVariants}>
                     {logo && (
                         <div className="flex items-center">
-                            {/* Profile image with rounded style instead of just logo */}
-                            <div className="mr-3 h-10 w-10 sm:h-12 sm:w-12 rounded-full overflow-hidden flex-shrink-0">
+                            {/* Profile image - Larger on mobile since it's the only image */}
+                            <div className="mr-3 h-12 w-12 sm:h-12 sm:w-12 md:h-10 md:w-10 lg:h-12 lg:w-12 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-primary/20">
                                 <img src={logo.url} alt={logo.alt} className="h-full w-full object-cover" />
                             </div>
                             <div>
@@ -147,24 +147,17 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
             </motion.footer>
         </div>
 
-        {/* Right Side: Image with Angled Clip Path Animation - FIXED */}
+        {/* Right Side: Image with Angled Clip Path Animation - Hidden on Mobile */}
         <motion.div
-          className="relative w-full min-h-[300px] sm:min-h-[400px] bg-cover bg-center bg-no-repeat md:w-1/2 md:min-h-full lg:w-2/5"
+          className="hidden md:block relative w-full md:w-1/2 md:min-h-full lg:w-2/5 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `url(${backgroundImage})`,
             backgroundPosition: 'center top',
           }}
           initial={{ clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' }}
-          animate={{
-            clipPath: window.innerWidth < 768
-              ? 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' // Straight on mobile
-              : 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)' // Angled on desktop
-          }}
+          animate={{ clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)' }}
           transition={{ duration: 1.2, ease: "circOut", delay: 0.3 }}
-        >
-          {/* Optional overlay gradient for better text readability on mobile */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent md:hidden" />
-        </motion.div>
+        />
       </motion.section>
     );
   }
